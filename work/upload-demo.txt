@@ -1,0 +1,4 @@
+From: Planning Team <planning@example.test>
+Subject: Design review notes
+
+The design review is on Thursday. Please bring your draft notes.

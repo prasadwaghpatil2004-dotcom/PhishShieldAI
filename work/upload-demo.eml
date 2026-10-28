@@ -1,0 +1,17 @@
+From: =?UTF-8?Q?IT_Security?= <security@rnicrosoft.test>
+To: trainee@example.test
+Subject: Final notice: verify identity within 2 hours
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="demo-boundary"
+
+--demo-boundary
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Your Microsoft account will be suspended. Verify identity immediately at https://login-session.xyz/verify.
+Do not call the help desk.
+--demo-boundary
+Content-Type: text/html; charset="utf-8"
+
+<p>Your Microsoft account will be suspended.</p><img src="https://tracking.test/pixel">
+--demo-boundary--

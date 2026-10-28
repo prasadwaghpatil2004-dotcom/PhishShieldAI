@@ -1,0 +1,12 @@
+from pathlib import Path
+p=Path('work/scanner-ui.js');s=p.read_text(encoding='utf-8-sig')
+s=s.replace("$('#scan-error').hidden=true;if(!data.body.trim())", "$('#scan-error').hidden=true;if(upload?.kind==='image'&&!data.body.trim()){imageOnlyAssessment();return}if(!data.body.trim())")
+s=s.replace('const r=PhishRadarEngine.analyze(data);result=r;', 'const r=PhishRadarEngine.analyze(data);r.uploadMetadata=uploadMeta();result=r;')
+s=s.replace("function renderHUD(){const r=result;", "function renderHUD(){$('#gauge').setAttribute('aria-valuetext',result?result.score+' of 100 risk':'Not assessed');const r=result;")
+s=s.replace("function newInvestigation(){clearTimeout(timer);", "function newInvestigation(){disposeUpload();clearTimeout(timer);")
+s=s.replace("function restore(index){const r=history[index];if(!r)return;", "function restore(index){const r=history[index];if(!r)return;disposeUpload();")
+s=s.replace("function command(c){", "function command(c){if(c==='browse')$('#file-input').click();if(c==='remove-upload'){disposeUpload();if($('#body').value.trim())analyzeNow(false);else{result=null;dirty=false;renderResults();renderHUD()}toast('Uploaded source removed.')}" )
+s=s.replace("function method(){", "function method(){")
+s=s.replace('There are no preloaded scenarios or remote model calls.', 'There are no preloaded scenarios or remote model calls. Email/text imports are decoded locally. Screenshots receive a local raster preview and basic metadata checks; no OCR engine is bundled. Paste actual OCR text to assess screenshot message content.')
+s=s.replace("$('#scan-form').addEventListener('submit'",Path('work/upload-ui.js').read_text(encoding='utf-8-sig')+"\n$('#scan-form').addEventListener('submit'",1)
+p.write_text(s,encoding='utf-8')

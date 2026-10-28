@@ -1,0 +1,5 @@
+from pathlib import Path
+p=Path('work/verify.cjs');s=p.read_text(encoding='utf-8-sig').replace('1/3 discovered','1 of 3').replace('3/3 discovered','3 of 3').replace('0/4 discovered','0 of 4').replace('4/4 discovered','4 of 4').replace('PhishProof-Defense-Readiness-Demo.svg','PhishRadar-Security-Defense-Demo.svg')
+s=s.replace("assert.equal(app.text('#channel-tag'),'REVERSE DRILL');app.click({lure:'1'});", "assert.equal(app.text('#channel-tag'),'REVERSE DRILL');assert.equal(app.text('#difficulty-tag'),'BEGINNER');app.click({difficulty:'Adversarial'});app.click({lure:'1'});")
+s=s.replace("assert.match(app.body(),/hinted/);", "assert.match(app.body(),/hinted/);app.click({evidence:'personal'});assert.match(app.dialog().innerHTML,/Borrowed personal familiarity/);assert.match(app.dialog().innerHTML,/CAPTURED EVIDENCE/);assert.match(html,/color-scheme:light/);assert.match(html,/PHISHRADAR/);assert.match(html,/iq-gradient/);assert(!html.includes('color-scheme:dark'));")
+p.write_text(s,encoding='utf-8')

@@ -1,0 +1,5 @@
+from pathlib import Path
+p=Path('work/engine.js');s=p.read_text(encoding='utf-8-sig');s=s.replace("const body=String(input.body||''),sender=String(input.sender||'').slice(0,500),channel=", "const body=String(input.body||''),senderInput=String(input.sender||'').slice(0,500),rawFrom=body.split(/\\r?\\n\\r?\\n/,1)[0].slice(0,12000).match(/^From:[ \\t]*([^\\r\\n]+)$/im),sender=senderInput||(rawFrom?rawFrom[1].trim().slice(0,500):''),channel=")
+s=s.replace('const before=findings.length;','');s=s.replace('return {sender,body,channel,senderDomain,','return {sender,senderInput,senderInferred:!senderInput&&!!rawFrom,body,channel,senderDomain,');p.write_text(s,encoding='utf-8')
+p=Path('work/scanner-ui.js');s=p.read_text(encoding='utf-8-sig').replace(',scanSequence=0','');s=s.replace("$('#sender-preview').innerHTML=r.sender?renderText(r.sender,'sender')", "$('#sender-preview').innerHTML=r.sender?renderText(r.sender,'sender')+(r.senderInferred?' <span class=\"badge\">From pasted header · unverified</span>':'')")
+s=s.replace("$('#sender').value=r.sender;", "$('#sender').value=r.senderInput??r.sender;");p.write_text(s,encoding='utf-8')

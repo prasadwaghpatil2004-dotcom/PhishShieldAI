@@ -1,0 +1,4 @@
+from pathlib import Path
+p=Path('work/engine.js');s=p.read_text(encoding='utf-8-sig').replace("sender.lastIndexOf(parsed.domain)","sender.toLowerCase().lastIndexOf(parsed.domain)").replace("if(limited)score=Math.max(31,score);",'');p.write_text(s,encoding='utf-8')
+p=Path('work/scanner-ui.js');s=p.read_text(encoding='utf-8-sig').replace('This is an incomplete assessment; the score is at least Suspicious.','This is an incomplete assessment; risk may be underestimated.').replace('Coverage is incomplete, so the score is raised to at least 31.','Coverage is incomplete; analyze a smaller section for full findings.');p.write_text(s,encoding='utf-8')
+p=Path('work/fix_engine.py');s=p.read_text(encoding='utf-8-sig');s='\n'.join(line for line in s.splitlines() if not (line.startswith('assert hashlib.sha256') and 'if False' in line));p.write_text(s+'\n',encoding='utf-8')
