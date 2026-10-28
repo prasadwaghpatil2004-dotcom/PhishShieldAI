@@ -1,0 +1,9 @@
+# Publish only the standalone app and deployment documentation.
+*
+!/.gitignore
+!/.vercelignore
+!/index.html
+!/vercel.json
+!/README.md
+!/deploy.bat
+!/deploy.ps1
