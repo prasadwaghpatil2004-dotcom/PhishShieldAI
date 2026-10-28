@@ -1,4 +1,4 @@
-# PhishShield AI | scamalert-ai
+# PhishShield AI 
 
 **Real-Time Threat Forensics & Social Engineering Defense**
 
